@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "257263284665",
+    "project_id": "aqua-watch-app",
+    "storage_bucket": "aqua-watch-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257263284665:android:344a44c3fae2e671e64668",
+        "android_client_info": {
+          "package_name": "com.example.legal_matrix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257263284665-u1s0cpfma80dh3a5ierm75ofqc7k5dne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC358DoK7qpFfhTBpI_PMLwtRDyTqeY10g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257263284665-c4i7qu8fqj2hkdc9a5e75gem4phu96c6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "257263284665-mcka67elkclql4hh50lk0146dchj2lfs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aquaWatchApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

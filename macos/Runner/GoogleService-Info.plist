@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>257263284665-f8her89lvs2g3luo5a9bceho0jubtk13.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.257263284665-f8her89lvs2g3luo5a9bceho0jubtk13</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>257263284665-3t83speu3h37s8som7aa23tgbn3i72rk.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBP49bRIndJLRRV6r4FOsC8Z1gCW46c5xI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>257263284665</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.legalMatrix.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>aqua-watch-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>aqua-watch-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:257263284665:ios:2b937bea911f9433e64668</string>
+</dict>
+</plist>
