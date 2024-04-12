@@ -45,6 +45,7 @@ dependencies:
   cloud_firestore:
   http: 
   get: ^4.6.6
+  multi_split_view: ^2.4.0
 
 dev_dependencies:
   flutter_test:
