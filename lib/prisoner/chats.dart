@@ -81,7 +81,7 @@ class Chat_Section extends StatelessWidget {
                                         ),
                                         Text(snapshot.data![index].name,
                                             style: TextStyle(
-                                                fontSize: 10,
+                                                fontSize: 20,
                                                 fontWeight: FontWeight.w500)),
                                       ],
                                     ),

@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.2.3
   flutter_chat_types: ^3.6.2
   flutter_chat_ui: ^1.6.12
+  table_calendar: ^3.1.1
 
 dev_dependencies:
   flutter_test:

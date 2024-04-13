@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:legal_matrix/lawyer/requests.dart';
 import 'package:legal_matrix/prisoner/chats.dart';
 import './appointment.dart';
+import './lawyer_dashboard.dart';
 
 class Lawyer extends StatefulWidget {
   const Lawyer({super.key});
@@ -11,12 +12,15 @@ class Lawyer extends StatefulWidget {
 }
 
 class _LawyerState extends State<Lawyer> {
-  var _selectedIndex = 2;
+  var _selectedIndex = 1;
 
   Widget _getBody(int index) {
     switch (index) {
       case 0:
         return const Appointment();
+      
+      case 1:
+        return LawyerDashboard();
       
       case 2:
         return RequestsPage();
