@@ -106,15 +106,33 @@ class DatabaseService {
     
   }
 
+
   Future<String> getRoomName(String roomID) async {
+    try{
     var members = (await roomsCollection.doc(roomID).get()).get("members") as List;
     members.remove(FirebaseAuth.instance.currentUser!.uid);
-    print(members[0]);
-    return "huh";
+    var otherUser = members[0];
+    return (await FirebaseFirestore.instance.collection("users").doc(otherUser).get()).get("name");
+    } catch(e) {
+      print("error in getroomname");
+      print(e);
+    }
+    return "";
   }
 
   Future<String> getLastMessage(String roomID) async {
-    return FirestoreMessage.fromMap((await roomsCollection.doc(roomID).get()).get("messages")[0]).message;
+    try {
+    var messages = (await roomsCollection.doc(roomID).get()).get("messages") as List;
+    if (messages.isEmpty) {
+      return "";
+    } else {
+      return FirestoreMessage.fromMap(messages[0]).message;
+    }
+    
+    } catch (e) {
+      print("error in get last message");
+    }
+    return "";
   }
 
   Future<void> leaveRoom(String roomID) async {

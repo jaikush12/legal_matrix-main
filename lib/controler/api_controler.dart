@@ -29,7 +29,9 @@ class ApiControler extends GetxController {
         "https://ml-webscrapping.onrender.com/get_section_content";
     final response = await http.post(Uri.parse(userUrl),
         headers: headers, body: jsonEncode(body));
+        print(response.body);
     if (response.statusCode == 200) {
+      print("response ok");
       // result variable has this data now.
       String result = jsonDecode(response.body)['section_content'];
       texteditingcontroller.text = result;
