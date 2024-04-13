@@ -87,18 +87,23 @@ class DatabaseService {
     print(rooms);
     var roomsToBeReturned = <RoomView>[];
     for (var room in rooms) {
-      var members = (await FirebaseFirestore.instance.collection("rooms").doc(room).get()).get("members") as List;
-      print("room is");
-      print(room);
-      print("members are: ");
-      print(members);
-      if (members.length > 1) {
+      var roomSnapshot = await FirebaseFirestore.instance.collection("rooms").doc(room).get();
+      if (roomSnapshot.exists) {
+        var members = roomSnapshot.get("members") as List;
+        if (members.length > 1) {
         try {
       roomsToBeReturned.add(RoomView(room, await getRoomName(room), await getLastMessage(room)));
         } catch(e) {
           print(e);
         }
       }
+      } else {
+        rooms.remove(room);
+        usersCollection.doc(FirebaseAuth.instance.currentUser!.uid).update({
+          "rooms": rooms
+        });
+      }
+      
     }
     print(roomsToBeReturned);
     print("rooms to be returned above");
