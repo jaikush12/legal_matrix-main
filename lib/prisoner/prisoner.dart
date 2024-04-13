@@ -16,10 +16,6 @@ class _PrisonerState extends State<Prisoner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: const Text("Prisoner"),
-      ),
       body: _getBody(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,

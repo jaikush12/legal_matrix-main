@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/Calander.dart';
@@ -13,6 +14,7 @@ class DashboardPage extends StatelessWidget {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
+      
       backgroundColor: Color(0xFFEBEBEB),
       body: SingleChildScrollView(
         child: Column(
@@ -182,7 +184,7 @@ class DashboardPage extends StatelessWidget {
                                     fontSize: 13),
                               ),
                               Text(
-                                "Email : \n sp546816@gmail.com",
+                                "Email : \n ${FirebaseAuth.instance.currentUser!.email}",
                                 style: TextStyle(
                                     color: Color(0xFF535353),
                                     fontWeight: FontWeight.w400,

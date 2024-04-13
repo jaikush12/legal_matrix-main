@@ -313,8 +313,10 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: password,
+                          obscureText: true,
                           decoration: InputDecoration(
                             hintText: "",
+                            
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                               borderSide: const BorderSide(),
@@ -349,6 +351,7 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: Confpassword,
+                          obscureText: true,
                           decoration: InputDecoration(
                             hintText: "",
                             border: OutlineInputBorder(
@@ -382,12 +385,14 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
                     if (_formKey.currentState!.validate()) {
                       var collectionName = (widget.role == Role.lawyer) ? "Lawyer" : "Prisoner";
 
-                      FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailaddress.value.text, password: password.value.text).then((value) =>
+                      FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailaddress.value.text, password: password.value.text).then((value) {
                       { FirebaseFirestore.instance.collection(collectionName).doc(FirebaseAuth.instance.currentUser!.uid).set({
                       "Name" : firstname.text.toString() + " " + lastname.text.toString(),
                       "Email" : emailaddress.text.toString(),
                       "PhoneNumber" : phonenumber.text.toString()
-                      })}).then((value) {
+                      });
+                      FirebaseAuth.instance.currentUser!.updateDisplayName(firstname.text.toString());
+                      }}).then((value) {
                         if (widget.role == Role.lawyer) {
                           PrefUtil.setValue("role", "lawyer");
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Lawyer()), (Route) => false);

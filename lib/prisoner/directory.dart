@@ -10,17 +10,8 @@ class Legal_Directory extends StatelessWidget {
     var w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color(0xFFEBEBEB),
-      body: StreamBuilder(stream: FirebaseFirestore.instance.collection("Lawyer").snapshots(),
-          builder: (context,snapshot){
-            if(snapshot.connectionState == ConnectionState.active){
-              if(snapshot.hasData){
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Row(
+      appBar: AppBar(backgroundColor: Color(0xebebeb),
+        title: Row(
                         children: [
                           Icon(Icons.library_books_sharp,
                               color: Color(0xFF393939), size: 30),
@@ -30,9 +21,14 @@ class Legal_Directory extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   fontSize: 20)),
                         ],
-                      ),
-                    ),
-                    Expanded(
+                      ),),
+      backgroundColor: Color(0xFFEBEBEB),
+      body: StreamBuilder(stream: FirebaseFirestore.instance.collection("Lawyer").snapshots(),
+          builder: (context,snapshot){
+            if(snapshot.connectionState == ConnectionState.active){
+              if(snapshot.hasData){
+                
+                   return Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: SingleChildScrollView(
@@ -80,66 +76,69 @@ class Legal_Directory extends StatelessWidget {
                                             vertical: BorderSide(
                                                 color: Colors.grey.withOpacity(0.3))),
                                       ),
-                                      child: ListView.builder(
-                                        itemBuilder: (context, index) {
-                                          return Column(
-                                            children: [
-                                              SizedBox(height: 10,),
-                                              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Column(children: [
-                                                    Row(children: [
-                                                      Checkbox1(),
-                                                      SizedBox(
-                                                        width: 50,
-                                                      ),
-                                                      CircleAvatar(
-                                                          foregroundImage: AssetImage(
-                                                              "assets/associated_photo.png"),
-                                                          maxRadius: 18),
-                                                      SizedBox(
-                                                        width: 18,
-                                                      ),
-                                                      Text("${snapshot.data?.docs[index]["Name"]}",
-                                                          style: TextStyle(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: snapshot.data!.docs.length,
+                                          itemBuilder: (context, index) {
+                                        
+                                               
+                                                     return Padding(
+                                                      padding: EdgeInsets.only(bottom: 8),
+                                                       child: Row(
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        
+                                                        
+                                                        
+                                                        children: [
+                                                          Checkbox1(),
+                                                          
+                                                          
+                                                          CircleAvatar(
+                                                              foregroundImage: AssetImage(
+                                                                  "assets/associated_photo.png"),
+                                                              maxRadius: 18),
+                                                          
+                                                          
+                                                          Text("${snapshot.data?.docs[index]["Name"]}",
+                                                              style: TextStyle(
+                                                                  fontSize: 13,
+                                                                  fontWeight: FontWeight.w500)),
+                                                        
+                                                                                               
+                                                        Text("${snapshot.data?.docs[index]["Email"]}",style: TextStyle(
+                                                            fontSize: 13,
+                                                            fontWeight: FontWeight.w500)),
+                                                        
+                                                        
+                                                        SizedBox(
+                                                          width: MediaQuery.sizeOf(context).width/8,
+                                                          child: Text("${snapshot.data?.docs[index]["PhoneNumber"]}",style: TextStyle(
                                                               fontSize: 13,
-                                                              fontWeight: FontWeight.w500))
-                                                    ],),
-                                                  ],),
-                                                  Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                                                    Text("${snapshot.data?.docs[index]["Email"]}",style: TextStyle(
-                                                        fontSize: 13,
-                                                        fontWeight: FontWeight.w500)),
-                                                    Text("${snapshot.data?.docs[index]["PhoneNumber"]}",style: TextStyle(
-                                                        fontSize: 13,
-                                                        fontWeight: FontWeight.w500))
-                                                  ],)
-                                                ],
-                                              ),
-                                              SizedBox(height: 10,),
+                                                              fontWeight: FontWeight.w500)),
+                                                        )
+                                                                                                         ],
+                                                                                                       ),
+                                                     );
+                                          },
+                                                
+                                              
+                                            ),
+                                            SizedBox(height: 10,),
                                               Divider(
                                                 height: 1,
                                                 color: Colors.grey.withOpacity(0.3),
                                               ),
-                                            ],
-                                          );
-                                        },
-                                        itemCount: snapshot.data!.docs.length,
+                                        ],
+                                      ))
+                                        
                                       ),
                                     )
-                                ),
+                  ]),
                               ),
-                            ],
-                          ),
-                        ),
                       ),
-                    ),
-                    Container(
-                      height: 20,
-                      color: Color(0xFFEBEBEB),
-                    ),
-                  ],
-                );
+                          );
               }
               else{
                 return Center(child: CircularProgressIndicator(),);

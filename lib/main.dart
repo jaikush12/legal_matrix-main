@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       color: Colors.white,
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          
           children: [
             SizedBox(height: 70,),
             Image.asset("assets/images/logo.png", height: 200,),

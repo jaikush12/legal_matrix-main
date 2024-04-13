@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../pref_util.dart';
 import './signup page.dart' show Role;
+import '../prisoner/prisoner.dart';
+import '../lawyer/lawyer.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:legal_matrix/login/next_page.dart';
 //import 'package:legal_matrix/resources/auth_service.dart';
@@ -143,7 +147,15 @@ class _LOGINPAGEState extends State<LOGINPAGE> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        // AuthServices.signinUser(email, password, context);
+                        FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
+                          if (widget.role == Role.lawyer) {
+                          PrefUtil.setValue("role", "lawyer");
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Lawyer()), (Route) => false);
+                        } else {
+                          PrefUtil.setValue("role", "prisoner");
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Prisoner()), (Route) => false);
+                        }
+                        });
                       }
                     },
                     child: const Text(
