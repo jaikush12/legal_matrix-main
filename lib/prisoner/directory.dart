@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:legal_matrix/chatdb.dart';
 
 class Legal_Directory extends StatelessWidget {
   const Legal_Directory({Key? key}) : super(key: key);
@@ -30,14 +32,14 @@ class Legal_Directory extends StatelessWidget {
                 
                    return Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
                               Container(
                                 height: h * 0.1,
                                 padding: EdgeInsets.all(20),
-                                margin: EdgeInsets.only(left: 7),
+                                margin: EdgeInsets.only(left: 3),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.symmetric(
@@ -64,7 +66,7 @@ class Legal_Directory extends StatelessWidget {
                               Container(
                                 height: h * 0.65,
                                 child: Container(
-                                    margin: EdgeInsets.only(left: 7),
+                                    margin: EdgeInsets.only(left: 3),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                     ),
@@ -99,25 +101,47 @@ class Legal_Directory extends StatelessWidget {
                                                               foregroundImage: AssetImage(
                                                                   "assets/associated_photo.png"),
                                                               maxRadius: 18),
+
+                                                          SizedBox(width: 5,),
                                                           
                                                           
-                                                          Text("${snapshot.data?.docs[index]["Name"]}",
-                                                              style: TextStyle(
-                                                                  fontSize: 13,
-                                                                  fontWeight: FontWeight.w500)),
+                                                          SizedBox(
+                                                            width: MediaQuery.sizeOf(context).width/5,
+                                                            child: Text("${snapshot.data?.docs[index]["Name"]}",
+                                                                style: TextStyle(
+                                                                    fontSize: 13,
+                                                                    fontWeight: FontWeight.w500)),
+                                                          ),
                                                         
                                                                                                
-                                                        Text("${snapshot.data?.docs[index]["Email"]}",style: TextStyle(
-                                                            fontSize: 13,
-                                                            fontWeight: FontWeight.w500)),
+                                                        SizedBox(
+                                                          width: MediaQuery.sizeOf(context).width/4,
+                                                          child: Text("${snapshot.data?.docs[index]["Email"]}",style: TextStyle(
+                                                              fontSize: 13,
+                                                              fontWeight: FontWeight.w500)),
+                                                        ),
+                                                        
+                                                        
                                                         
                                                         
                                                         SizedBox(
-                                                          width: MediaQuery.sizeOf(context).width/8,
+                                                          width: MediaQuery.sizeOf(context).width/7,
                                                           child: Text("${snapshot.data?.docs[index]["PhoneNumber"]}",style: TextStyle(
                                                               fontSize: 13,
                                                               fontWeight: FontWeight.w500)),
-                                                        )
+                                                        ),
+
+                                                        IconButton(onPressed: () {
+                                                          late String roomID;
+                                                          DatabaseService().createRoom().then((roomId) {FirebaseFirestore.instance.collection("requests").add({
+                                                            "sender": FirebaseAuth.instance.currentUser!.uid,
+                                                            "receiver": snapshot.data!.docs[index].id,
+                                                            "room": roomId,
+                                                            "name": FirebaseAuth.instance.currentUser!.displayName
+                                                          });
+                                                          roomID = roomId;
+                                                        }).then((value) => DatabaseService().joinRoom(roomID));
+                                                        }, icon: Icon(Icons.message)),
                                                                                                          ],
                                                                                                        ),
                                                      );

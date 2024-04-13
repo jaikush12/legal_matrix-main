@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:legal_matrix/lawyer/requests.dart';
+import 'package:legal_matrix/prisoner/chats.dart';
 import './appointment.dart';
 
 class Lawyer extends StatefulWidget {
@@ -9,12 +11,18 @@ class Lawyer extends StatefulWidget {
 }
 
 class _LawyerState extends State<Lawyer> {
-  var _selectedIndex = 1;
+  var _selectedIndex = 2;
 
   Widget _getBody(int index) {
     switch (index) {
       case 0:
         return const Appointment();
+      
+      case 2:
+        return RequestsPage();
+
+      case 3: 
+        return Chat_Section();
       
       default:
         return Container(); // Return an empty container for unknown index
@@ -23,7 +31,7 @@ class _LawyerState extends State<Lawyer> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = 0;
+      _selectedIndex = index;
     });
   }
 
@@ -45,6 +53,11 @@ class _LawyerState extends State<Lawyer> {
             icon: Icon(Icons.dashboard),
             backgroundColor: Colors.black,
             label: 'Dashboard',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            backgroundColor: Colors.black,
+            label: 'Requests',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),

@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:legal_matrix/chatdb.dart';
 import 'package:legal_matrix/lawyer/lawyer.dart';
 import 'package:legal_matrix/pref_util.dart';
 import 'package:legal_matrix/prisoner/prisoner.dart';
+import 'login_page.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'login_page.dart';
+var db = DatabaseService();
 
 enum Role {
   lawyer,
@@ -32,7 +34,7 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
   final TextEditingController Confpassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double fontSize = MediaQuery.of(context).size.height * 0.03;
+    double fontSize = MediaQuery.of(context).size.height * 0.025;
     // double imageSize = MediaQuery.of(context).size.width * 0.4;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -392,6 +394,8 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
                       "PhoneNumber" : phonenumber.text.toString()
                       });
                       FirebaseAuth.instance.currentUser!.updateDisplayName(firstname.text.toString());
+                      db.createChatUser(FirebaseAuth.instance.currentUser!.uid, firstname.text.toString());
+
                       }}).then((value) {
                         if (widget.role == Role.lawyer) {
                           PrefUtil.setValue("role", "lawyer");
