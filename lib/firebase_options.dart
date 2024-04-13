@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -44,41 +41,51 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCbLHWKtZyab2PwWvRkOq9NFFRE4oO7kqw',
-    appId: '1:257263284665:web:4859568d1fa5691fe64668',
-    messagingSenderId: '257263284665',
-    projectId: 'aqua-watch-app',
-    authDomain: 'aqua-watch-app.firebaseapp.com',
-    storageBucket: 'aqua-watch-app.appspot.com',
+    apiKey: 'AIzaSyCxaJA7Yf7Xc7VnQ9gESYFxWo9139zur0I',
+    appId: '1:1048075781642:web:418d19d8ac01cad1e841f3',
+    messagingSenderId: '1048075781642',
+    projectId: 'legalmatrix-1f767',
+    authDomain: 'legalmatrix-1f767.firebaseapp.com',
+    storageBucket: 'legalmatrix-1f767.appspot.com',
+    measurementId: 'G-TGQ9NYR72F',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC358DoK7qpFfhTBpI_PMLwtRDyTqeY10g',
-    appId: '1:257263284665:android:344a44c3fae2e671e64668',
-    messagingSenderId: '257263284665',
-    projectId: 'aqua-watch-app',
-    storageBucket: 'aqua-watch-app.appspot.com',
+    apiKey: 'AIzaSyAamnn6YXqR3YcsolFRD8SywOO5_Wa323c',
+    appId: '1:1048075781642:android:ffbf526a54e15dcbe841f3',
+    messagingSenderId: '1048075781642',
+    projectId: 'legalmatrix-1f767',
+    storageBucket: 'legalmatrix-1f767.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBP49bRIndJLRRV6r4FOsC8Z1gCW46c5xI',
-    appId: '1:257263284665:ios:3cb601e2d30130a4e64668',
-    messagingSenderId: '257263284665',
-    projectId: 'aqua-watch-app',
-    storageBucket: 'aqua-watch-app.appspot.com',
-    androidClientId: '257263284665-3t83speu3h37s8som7aa23tgbn3i72rk.apps.googleusercontent.com',
-    iosClientId: '257263284665-ncckttahvra6cqkio8s6pcfifa0al0v6.apps.googleusercontent.com',
+    apiKey: 'AIzaSyC-y9LRabnRMdsbTkLQu9DCH5kzn1xgojY',
+    appId: '1:1048075781642:ios:5137e462dea4d9d4e841f3',
+    messagingSenderId: '1048075781642',
+    projectId: 'legalmatrix-1f767',
+    storageBucket: 'legalmatrix-1f767.appspot.com',
+    iosClientId: '1048075781642-2v04fvqpme0l18ifeslt52c4su53qhbr.apps.googleusercontent.com',
     iosBundleId: 'com.example.legalMatrix',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBP49bRIndJLRRV6r4FOsC8Z1gCW46c5xI',
-    appId: '1:257263284665:ios:2b937bea911f9433e64668',
-    messagingSenderId: '257263284665',
-    projectId: 'aqua-watch-app',
-    storageBucket: 'aqua-watch-app.appspot.com',
-    androidClientId: '257263284665-3t83speu3h37s8som7aa23tgbn3i72rk.apps.googleusercontent.com',
-    iosClientId: '257263284665-f8her89lvs2g3luo5a9bceho0jubtk13.apps.googleusercontent.com',
-    iosBundleId: 'com.example.legalMatrix.RunnerTests',
+    apiKey: 'AIzaSyC-y9LRabnRMdsbTkLQu9DCH5kzn1xgojY',
+    appId: '1:1048075781642:ios:5137e462dea4d9d4e841f3',
+    messagingSenderId: '1048075781642',
+    projectId: 'legalmatrix-1f767',
+    storageBucket: 'legalmatrix-1f767.appspot.com',
+    iosClientId: '1048075781642-2v04fvqpme0l18ifeslt52c4su53qhbr.apps.googleusercontent.com',
+    iosBundleId: 'com.example.legalMatrix',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCxaJA7Yf7Xc7VnQ9gESYFxWo9139zur0I',
+    appId: '1:1048075781642:web:f0920fae12b49204e841f3',
+    messagingSenderId: '1048075781642',
+    projectId: 'legalmatrix-1f767',
+    authDomain: 'legalmatrix-1f767.firebaseapp.com',
+    storageBucket: 'legalmatrix-1f767.appspot.com',
+    measurementId: 'G-TTQM40P8QZ',
+  );
+
 }

@@ -24,11 +24,11 @@ class Legal_Directory extends StatelessWidget {
                         children: [
                           Icon(Icons.library_books_sharp,
                               color: Color(0xFF393939), size: 30),
-                          Text("Top rated Lawyer:",
+                          Text("Top rated Lawyers",
                               style: TextStyle(
                                   color: Color(0xFF393939),
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 32)),
+                                  fontSize: 20)),
                         ],
                       ),
                     ),

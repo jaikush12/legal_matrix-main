@@ -133,7 +133,7 @@ class _MyRoleState extends State<MyRole> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const SIGNUPPAGE()),
+                                            const SIGNUPPAGE(Role.lawyer)),
                                   );
                                 },
                                 child: Container(
@@ -167,7 +167,7 @@ class _MyRoleState extends State<MyRole> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Prisoner()),
+                                        builder: (context) => SIGNUPPAGE(Role.prisoner)),
                                   );
                                 },
                                 child: Container(

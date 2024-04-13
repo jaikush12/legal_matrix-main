@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/Calander.dart';
@@ -39,7 +40,7 @@ class DashboardPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Ame Admin",
+                            FirebaseAuth.instance.currentUser?.displayName ?? "",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700, fontSize: 17),
                           ),

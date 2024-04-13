@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:legal_matrix/controler/api_controler.dart';
-import 'package:legal_matrix/model/article model.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
 
@@ -29,7 +28,8 @@ class _Artiles_pageState extends State<Artiles_page> {
                                     color: Color(0xFF393939),
                                     fontWeight: FontWeight.w700,)),
                           ],
-                        ),),
+                        ),
+                        automaticallyImplyLeading: false,),
       backgroundColor: Colors.white,
        body: Obx(
          () =>  MultiSplitView(

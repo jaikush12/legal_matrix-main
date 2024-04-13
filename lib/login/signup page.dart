@@ -1,12 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:legal_matrix/lawyer/lawyer.dart';
+import 'package:legal_matrix/pref_util.dart';
+import 'package:legal_matrix/prisoner/prisoner.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'login_page.dart';
 
+enum Role {
+  lawyer,
+  prisoner
+}
+
 class SIGNUPPAGE extends StatefulWidget {
-  const SIGNUPPAGE({Key? key}) : super(key: key);
+  final Role role;
+  const SIGNUPPAGE(this.role, {Key? key}) : super(key: key);
 
   @override
   State<SIGNUPPAGE> createState() => _SIGNUPPAGEState();
@@ -367,26 +376,34 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     maximumSize: MaterialStateProperty.all(
-                        Size(width * 0.4, height * 0.06)),
+                        Size(width * 05, height * 0.08)),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      var collectionName = (widget.role == Role.lawyer) ? "Lawyer" : "Prisoner";
 
                       FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailaddress.value.text, password: password.value.text).then((value) =>
-                      { FirebaseFirestore.instance.collection("Lawyer").doc(FirebaseAuth.instance.currentUser!.uid).set({
+                      { FirebaseFirestore.instance.collection(collectionName).doc(FirebaseAuth.instance.currentUser!.uid).set({
                       "Name" : firstname.text.toString() + " " + lastname.text.toString(),
                       "Email" : emailaddress.text.toString(),
                       "PhoneNumber" : phonenumber.text.toString()
-                      })}).then((value) => {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> LOGINPAGE()))
-                      });
+                      })}).then((value) {
+                        if (widget.role == Role.lawyer) {
+                          PrefUtil.setValue("role", "lawyer");
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Lawyer()), (Route) => false);
+                        } else {
+                          PrefUtil.setValue("role", "prisoner");
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> Prisoner()), (Route) => false);
+                        }
+                      }
+                      );
                       const SnackBar(
                         content: Text(
                           'going to login page',
                         ),
                       );
                     } else {
-                      const SnackBar(content: Text('invalid'));
+                      const SnackBar(content: Text('Invalid'));
                     }
                   },
                   child: const Text(
@@ -401,7 +418,7 @@ class _SIGNUPPAGEState extends State<SIGNUPPAGE> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LOGINPAGE()));
+                          builder: (context) => LOGINPAGE(widget.role)));
                 },
                 child: const Text("Already have an account? Log in"))
           ],

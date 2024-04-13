@@ -40,7 +40,6 @@ class ApiControler extends GetxController {
           'Sever responded: ${response.statusCode}:${response.reasonPhrase.toString()}');
       isFailed.value = true;
       isloading.value = false;
-      
     }
   }
 }
